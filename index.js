@@ -8,17 +8,17 @@ if (document.readyState === "loading") {
 // API Requests
 function requestPosts() {
     const request = new XMLHttpRequest()
-    let url = `http://localhost:3000/api/v1/posts?resultsPerPage=${resultsPerPage}&pageNumber=${pageNumber}`
+    let url = `https://blog-website-sgrv.onrender.com/api/v1/posts?resultsPerPage=${resultsPerPage}&pageNumber=${pageNumber}`
     request.open('GET', url)
     request.setRequestHeader('Content-Type', 'application/json')
     request.addEventListener('load', function() {
         if (request.status === 200 && request.readyState === 4) {
+            document.getElementById("loading-spinner").classList.add("visually-hidden")
             document.getElementById("blog-posts-container").innerHTML = request.response
-            // TODO: add proper styling to make a gallery for the items
         } else {
             if (request.status == 400 && request.readyState === 4) {
                 console.log(request.response)
-                // TODO: Add proper error handling
+                // TODO: Add proper error handlinghttp://127.0.0.1:5500
             }
         }
     })
@@ -37,7 +37,7 @@ function sendEmail() {
         }
     })
     const request = new XMLHttpRequest()
-    request.open('POST', "http://localhost:3000/api/v1/contact")
+    request.open('POST', "https://blog-website-sgrv.onrender.com/api/v1/contact")
     request.setRequestHeader('Content-Type', 'application/json')
     request.addEventListener('load', function(event) {
         // TODO: Add a spinner instead of the button's text
